@@ -1,0 +1,274 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --black1: #0E0E0E;
+    --black2: rgb(38, 38, 38);
+    --black3: #444444;
+    --black4: #2A2A2A;
+    --transBlack1: rgba(14, 14, 14, 0.32);
+    --transBlack2: rgba(14, 14, 14, 0.8);
+    --white: #fff;
+    --blue2: #9ee8d4;
+    --white2: #5bdeb8;
+    --transWhite: rgba(91, 222, 184, 0.26);
+    --gray: #5e5e5e;
+    --blue: #3bbe07;
+}
+
+/* Body Styles */
+body {
+    background-color: var(--black1);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 2 1'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='1' gradientTransform='rotate(0,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%230E0E0E'/%3E%3Cstop offset='1' stop-color='%23171717'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='1' gradientTransform='rotate(0,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%232A2A2A' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%232A2A2A' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='2' y2='2' gradientTransform='rotate(0,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%232A2A2A' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%232A2A2A' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='2' height='1'/%3E%3Cg fill-opacity='0.28'%3E%3Cpolygon fill='url(%23b)' points='0 1 0 0 2 0'/%3E%3Cpolygon fill='url(%23c)' points='2 1 2 0 0 0'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    font-size: 62.5%;
+    min-height: 100vh;
+}
+
+/* Content Styles */
+.content {
+    display: flex;
+    width: 100vw;
+    height: 100%;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Navigation Styles */
+nav {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    border-bottom: 1px solid var(--gray);
+    background: var(--transBlack2);
+    padding: 0 1rem;
+
+}
+
+/* Subpage Links Styles */
+
+nav .menu {
+    margin: 0;
+    display: flex;
+    padding: 0;
+    z-index: 0;
+    width: 20%;
+}
+
+.shop-name {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: transparent;
+    background: linear-gradient(45deg, #28c470, #077ebe);
+    background-clip: text;
+    margin-right: 2rem;
+}
+
+nav .menu-link {
+    list-style: none;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .menu-link > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2rem;
+    text-align: center;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 500;
+    transition: color 0.25s ease;
+    text-transform: uppercase;
+    position: relative;
+}
+
+nav .menu-link > a::before {
+    text-align: center;
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0.15rem;
+    top:1.5rem;
+    z-index: 101;
+    background: var(--white2);
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 0.25s ease;
+}
+
+nav .menu-link > a:hover::before {
+    width: 100%;
+}
+
+nav .menu-link > a:hover {
+    color: var(--white2);
+}
+
+.indicator-dropdown { /* Centering dropdown under arrow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.arrow-indicator {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--white);
+    transition: 0.25s;
+    margin-left: 0.2rem;
+}
+
+.arrow-indicator:hover {
+    color: var(--white2);
+}
+
+.arrow-clicked {
+    stroke-width: 2.5;
+    transform: rotate(180deg);
+    color: var(--white2);
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: var(--transBlack2);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    z-index: 100;
+    top: 4rem;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+    backdrop-filter: blur(1rem);
+    border: 1px solid var(--gray);
+}
+
+.dropdown-show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown-li {
+    list-style: disc;
+    margin: 0.25rem 0.25rem 0.25rem 1.25rem;
+    transition: opacity 0.5s ease, transform 0.5s ease, color 0.2s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+
+.dropdown-li:hover {
+    color: var(--white2);
+}
+
+.dropdown-li:hover a {
+    color: var(--white2);
+}
+
+.dropdown-show li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: 0.5s opacity ease, 0.5s transform ease, 0.2s color ease;
+    text-wrap: nowrap;
+}
+
+.dropdown-show {
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Search Styles */
+.search {
+    width: 25%;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem 0 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 0.5rem;
+    background-color: var(--black2);
+    z-index: 0;
+}
+
+.search label {
+    width: 100%;
+}
+
+.search input {
+    width: 100%;
+    height: 2.5rem;
+    border: none;
+    background-color: var(--black2);
+    color: var(--white);
+    font-weight: 400;
+    font-size: 1.5rem;
+    outline: none;
+}
+
+.search button {
+    background: var(--black3);
+    border: none;
+    border-radius: 0.5rem;
+    width: 3rem;
+    aspect-ratio: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search button svg {
+    width: 2rem;
+    height: 2rem;
+    transition: color 0.2s ease;
+    color: var(--white);
+    display: block;
+}
+
+.search button:hover {
+    background-color: var(--white);
+}
+
+.search button:hover svg {
+    color: var(--black2);
+}
+
+/* Account Menu Styles */
+
+.account-menu {
+    width: 20%
+}

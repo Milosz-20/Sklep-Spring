@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style-index.css">
+    <link rel="stylesheet" href="/css/style-products.css"/>
+    <link rel="stylesheet" href="/css/style-singleProduct.css"/>
+    <script src="/js/script.js" defer></script>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <title>Document</title>
+</head>
+<body>
+<nav>
+    <ul class="menu">
+        <li class="menu-link shop-name">CrazyStyle</li>
+        <li class="menu-link"><a th:href="@{/}">Home</a></li>
+        <li class="menu-link">
+            <a th:href="@{/products}">Shop</a>
+            <div class="indicator-dropdown">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 arrow-indicator">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+            <ul class="dropdown">
+                <li class="dropdown-li"><a th:href="@{/products}">All products</a></li>
+                <li class="dropdown-li"><a>Men</a></li>
+                <li class="dropdown-li"><a>Woman</a></li>
+            </ul>
+        </div>
+        </li>
+        <li class="menu-link">
+            <a>Contact</a>
+            <div class="indicator-dropdown">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 arrow-indicator">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+                <ul class="dropdown">
+                    <li class="dropdown-li"><a>Contact</a></li>
+                    <li class="dropdown-li"><a>Blog</a></li>
+                    <li class="dropdown-li"><a>Newsletter</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <div class="search">
+        <label>
+            <input type="text" placeholder="Search..." />
+        </label>
+        <button>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+        </button>
+    </div>
+    <ul class="account-menu">
+        <li class="menu-link"><a>Login</a></li>
+        <li class="menu-link"><a>Register</a></li>
+    </ul>
+</nav>
+<div class="content">
+    <div th:switch="${contentFragment}">
+        <div th:case="'home'">
+            <div th:replace="home :: content"></div>
+        </div>
+        <div th:case="'products'">
+            <div th:replace="products :: content"></div>
+        </div>
+        <div th:case="'view'">
+            <div th:replace="singleProduct :: content"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
