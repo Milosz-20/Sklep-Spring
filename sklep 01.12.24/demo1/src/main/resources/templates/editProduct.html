@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Product</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    input[type="text"], input[type="number"], textarea {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<h1>Edit Product</h1>
+<form action="/products/update" method="POST" th:object="${product}">
+  <!-- Hidden field for product id -->
+  <input type="hidden" th:field="*{id}"/>
+
+  <!-- Product Name -->
+  <div class="form-group">
+    <label for="name">Product Name:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required>
+  </div>
+
+  <!-- Product Price -->
+  <div class="form-group">
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" th:field="*{price}" step="0.01" required>
+  </div>
+
+  <!-- Product Image URL -->
+  <div class="form-group">
+    <label for="image">Image URL:</label>
+    <input type="text" id="image" name="image" th:field="*{image}" required>
+  </div>
+
+  <!-- Product Description -->
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <textarea id="description" th:field="*{description}" required></textarea>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="form-group">
+    <button type="submit">Update Product</button>
+  </div>
+</form>
+
+</body>
+</html>
